@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   Box, Button, Container, Divider, Title, createStyles, Grid,
-  Card, Group, Image, Text, Badge, useMantineTheme, Slider, AppShell, Navbar, Header, useMantineColorScheme, ActionIcon, Modal, AspectRatio, Overlay
+  Card, Group, Image, Text, Badge, useMantineTheme, Slider, AppShell, Navbar, Header,
+  useMantineColorScheme, ActionIcon, Modal, AspectRatio, Overlay
 } from '@mantine/core';
 import { useElementSize } from '@mantine/hooks';
 import { Sun, Moon } from 'tabler-icons-react';
@@ -11,22 +12,13 @@ import { useSpring, animated } from '@react-spring/web'
 import { useDrag, useGesture } from '@use-gesture/react'
 
 import Dropzone from './components/new-jam/dropzone';
-import { VideoCrop } from './components/new-jam/video-crop/VideoCrop';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
-    // borderBottom: `1px solid ${theme.colorScheme === 'dark'
-    //   ? theme.colors.dark[9]
-    //   : theme.colors.gray[7]}`,
-    // background: theme.colorScheme === 'dark'
-    //   ? theme.colors.dark[7]
-    //   : theme.colors.gray[7],
+
   },
   body: {
-    // background: theme.colorScheme === 'dark'
-    //   ? theme.colors.dark[8]
-    //   : theme.colors.gray[7],
-    // minHeight: '100vh',
+
   }
 }));
 
@@ -88,9 +80,6 @@ const JamCard = props => {
 
       <Group position="apart" style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
         <Text weight={500}>{props.title}</Text>
-        {/* <Badge color="pink" variant="light">
-          On Sale
-        </Badge> */}
       </Group>
 
       <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
@@ -119,7 +108,7 @@ const DraggingOverlay = props => {
   )
 }
 
-function clamp(number, min, max) {
+function clamp(number: number, min: number, max: number): number {
   return Math.min(Math.max(number, min), max);
 }
 
@@ -130,10 +119,6 @@ const CropVideo = props => {
   const [{ x, y }, api] = useSpring(() => ({ x: 0, y: 0 }))
   const [movement, setMovement] = useState([0, 0])
 
-  // Set the drag hook and define component movement based on gesture data
-  // const bind = useDrag(({ down, movement: [mx, my] }) => {
-  //   api.start({ x: down ? mx : 0, y: down ? my : 0, immediate: down })
-  // })
   const bind = useGesture({
     onDrag: ({ down, movement: [mx, my] }) => {
       api.start({ x: down ? mx : 0, y: down ? my : 0, immediate: down })
@@ -150,8 +135,6 @@ const CropVideo = props => {
 
     }
   })
-
-  console.log("x", movement)
 
   return (
     <div>
